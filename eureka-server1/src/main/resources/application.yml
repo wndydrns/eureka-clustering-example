@@ -1,0 +1,25 @@
+server:
+  port: 8081
+  
+spring:
+  application:
+    name: eureka-server1
+
+eureka:
+  instance: 
+    hostname: localhost
+  client:
+    # 다른 서비스가 자신을 발견할 수 있도록 자신의 정보를 eureka에 등록
+    register-with-eureka: true
+    # client 서비스가 eureka 서버로 부터 서비스 리스트 정보를 local에 caching 할지 여부
+    fetch-registry: true
+    # 이전에 받은 registry 갱신 30초마다 eureka에 fetch Rest 요청 실행
+    instance-info-replication-interval-seconds: 30
+    service-url:
+      # DefaultZone Url 설정을 통해 동일한 zone의 eureka server clustering 설정
+      defaultZone: http://localhost:8081/eureka/ 
+    
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discoverry: OFF
